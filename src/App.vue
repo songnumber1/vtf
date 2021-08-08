@@ -1,14 +1,22 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-      <br><br>
-      <v-btn>vuetify Button</v-btn>
-    </div>
-    <router-view/>
-  </div>
+  <layout-normal v-if="isAuth"/>
+  <layout-auth v-else/>
 </template>
+
+<script lang="ts">
+import { Vue, Component } from 'vue-property-decorator'
+import LayoutNormal from '@/components/layout/nomal.vue'
+import LayoutAuth from '@/components/layout/auth.vue'
+
+@Component({
+  components: {
+    LayoutNormal, LayoutAuth
+  }
+})
+export default class App extends Vue {
+  isAuth = false
+}
+</script>
 
 <style lang="scss">
 #app {
